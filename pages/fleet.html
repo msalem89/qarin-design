@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qarin · Fleet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../identity/tokens.css">
+<link rel="stylesheet" href="../components/tables.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sa-font);
+    background: var(--sa-cream);
+    color: var(--sa-text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ─────────────────────────────── */
+  .sa-header {
+    background: var(--sa-white);
+    border-bottom: 1px solid var(--sa-border);
+    padding: var(--sa-space-4) var(--sa-space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--sa-shadow-sm);
+  }
+  .sa-header-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-4);
+  }
+  .sa-header-brand span {}
+  .sa-header-nav {
+    display: flex;
+    gap: var(--sa-space-5);
+    font-size: var(--sa-text-sm);
+    font-weight: 500;
+  }
+  .sa-header-nav a {
+    text-decoration: none;
+    color: var(--sa-text-muted);
+    transition: color var(--sa-ease);
+  }
+  .sa-header-nav a:hover,
+  .sa-header-nav a.active { color: var(--sa-primary); }
+
+  /* ── Layout ─────────────────────────────── */
+  .sa-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--sa-space-6);
+  }
+
+  /* ── Stats Row ──────────────────────────── */
+  .sa-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sa-space-4);
+    margin-bottom: var(--sa-space-6);
+  }
+  .sa-stat {
+    background: var(--sa-white);
+    border: 1px solid var(--sa-border);
+    border-radius: var(--sa-radius-lg);
+    padding: var(--sa-space-5);
+    box-shadow: var(--sa-shadow-sm);
+  }
+  .sa-stat-label {
+    font-size: var(--sa-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--sa-text-muted);
+    margin-bottom: var(--sa-space-2);
+    font-family: var(--sa-font-heading);
+    font-weight: 500;
+  }
+  .sa-stat-value {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-3xl);
+    font-weight: 700;
+    color: var(--sa-dark);
+  }
+  .sa-stat-sub {
+    font-size: var(--sa-text-xs);
+    color: var(--sa-text-muted);
+    margin-top: var(--sa-space-1);
+  }
+
+  /* ── Table Section ──────────────────────── */
+  .sa-section {
+    margin-bottom: var(--sa-space-6);
+  }
+  .sa-section-title {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-xl);
+    font-weight: 600;
+    color: var(--sa-dark);
+    margin-bottom: var(--sa-space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-3);
+  }
+  .sa-section-title .sa-pill {
+    font-family: var(--sa-font-mono);
+    font-size: var(--sa-text-xs);
+    background: var(--sa-primary-light);
+    color: var(--sa-primary-dark);
+    padding: 2px var(--sa-space-3);
+    border-radius: var(--sa-radius-full);
+    font-weight: 500;
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 768px) {
+    .sa-stats { grid-template-columns: repeat(2, 1fr); }
+    .sa-page { padding: var(--sa-space-4); }
+    .sa-header { padding: var(--sa-space-3); }
+  }
+</style>
+</head>
+<body>
+
+<header class="sa-header">
+  <div class="sa-header-brand">
+    <span style="font-family:var(--sa-font-heading);font-weight:700;font-size:22px;color:var(--sa-dark);letter-spacing:2px;">QARIN</span>
+  </div>
+  <nav class="sa-header-nav">
+    <a href="#" class="active">Fleet</a>
+    <a href="#">Catalog</a>
+    <a href="#">Pipeline</a>
+    <a href="#">Metrics</a>
+  </nav>
+</header>
+
+<main class="sa-page">
+
+  <!-- ── Stats ────────────────────────────── -->
+  <div class="sa-stats">
+    <div class="sa-stat">
+      <div class="sa-stat-label">Active Agents</div>
+      <div class="sa-stat-value">19</div>
+      <div class="sa-stat-sub">All on FCC</div>
+    </div>
+    <div class="sa-stat">
+      <div class="sa-stat-label">Script Jobs</div>
+      <div class="sa-stat-value">22</div>
+      <div class="sa-stat-sub">14 infra · 5 comms · 3 auth</div>
+    </div>
+    <div class="sa-stat">
+      <div class="sa-stat-label">Fleet Health</div>
+      <div class="sa-stat-value" style="color:var(--sa-success)">100%</div>
+      <div class="sa-stat-sub">0 errors</div>
+    </div>
+    <div class="sa-stat">
+      <div class="sa-stat-label">Runs / Hour</div>
+      <div class="sa-stat-value">~180</div>
+      <div class="sa-stat-sub">Across 41 jobs</div>
+    </div>
+  </div>
+
+  <!-- ── LLM Agents ───────────────────────── -->
+  <div class="sa-section">
+    <div class="sa-section-title">
+      LLM Agents
+      <span class="sa-pill">19</span>
+    </div>
+    <div class="sa-table-wrap">
+      <div class="sa-table-toolbar">
+        <div>
+          <div class="sa-table-title">Agent Fleet</div>
+          <div class="sa-table-meta">All routed through FCC proxy · 127.0.0.1:8082</div>
+        </div>
+        <input class="sa-table-search" id="agentSearch" type="text" placeholder="Search agents…" oninput="filterTable('agentTable', this.value)">
+      </div>
+      <table class="sa-table" id="agentTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-sort>Agent</th>
+            <th data-sort>Model</th>
+            <th data-sort>Schedule</th>
+            <th data-sort>Status</th>
+            <th>Script</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sa-cell-num">1</td><td class="sa-cell-strong">nafs-brain</td><td class="sa-cell-mono">claude-opus-4</td><td>10m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh brain</td></tr>
+          <tr><td class="sa-cell-num">2</td><td class="sa-cell-strong">nafs-codex</td><td class="sa-cell-mono">claude-opus-4</td><td>10m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh codex</td></tr>
+          <tr><td class="sa-cell-num">3</td><td class="sa-cell-strong">brain-main</td><td class="sa-cell-mono">claude-opus-4</td><td>5m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">workorder-preface-brain-main.sh</td></tr>
+          <tr><td class="sa-cell-num">4</td><td class="sa-cell-strong">nafs-alia</td><td class="sa-cell-mono">claude-opus-4</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh alia</td></tr>
+          <tr><td class="sa-cell-num">5</td><td class="sa-cell-strong">nafs-equity-director</td><td class="sa-cell-mono">claude-opus-4</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh equity-director</td></tr>
+          <tr><td class="sa-cell-num">6</td><td class="sa-cell-strong">nafs-gui-expert</td><td class="sa-cell-mono">claude-opus-4</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh gui-expert</td></tr>
+          <tr style="border-top:2px solid var(--sa-border)"><td class="sa-cell-num">7</td><td class="sa-cell-strong">nafs-pattern-recognizer</td><td class="sa-cell-mono">claude-sonnet-4-6</td><td>10m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh pattern-recognizer</td></tr>
+          <tr><td class="sa-cell-num">8</td><td class="sa-cell-strong">nafs-biz</td><td class="sa-cell-mono">claude-sonnet-4-6</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh biz</td></tr>
+          <tr style="border-top:2px solid var(--sa-border)"><td class="sa-cell-num">9</td><td class="sa-cell-strong">nafs-qa</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>1m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh qa</td></tr>
+          <tr><td class="sa-cell-num">10</td><td class="sa-cell-strong">nafs-mark</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh mark</td></tr>
+          <tr><td class="sa-cell-num">11</td><td class="sa-cell-strong">nafs-zain</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh zain</td></tr>
+          <tr><td class="sa-cell-num">12</td><td class="sa-cell-strong">nafs-sentinel</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh sentinel</td></tr>
+          <tr><td class="sa-cell-num">13</td><td class="sa-cell-strong">nafs-improvement-engine</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh improvement-engine</td></tr>
+          <tr><td class="sa-cell-num">14</td><td class="sa-cell-strong">nafs-data-manager</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh data-manager</td></tr>
+          <tr><td class="sa-cell-num">15</td><td class="sa-cell-strong">memory-compressor</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh memory-comp</td></tr>
+          <tr><td class="sa-cell-num">16</td><td class="sa-cell-strong">calendar-alerts</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>30m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh calendar-alerts</td></tr>
+          <tr><td class="sa-cell-num">17</td><td class="sa-cell-strong">nafs-whatsapp-analyzer</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>5m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh whatsapp-analyzer</td></tr>
+          <tr><td class="sa-cell-num">18</td><td class="sa-cell-strong">nafs-outlook-bridge</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>5m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh outlook-bridge</td></tr>
+          <tr><td class="sa-cell-num">19</td><td class="sa-cell-strong">nafs-equity-analyst</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>15m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-agent-runner.sh equity-analyst</td></tr>
+        </tbody>
+      </table>
+      <div class="sa-table-footer">
+        <span>19 agents · All FCC · Updated just now</span>
+        <span>⬤ 6 Opus · ⬤ 2 Sonnet · ⬤ 11 Haiku</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Script Jobs ──────────────────────── -->
+  <div class="sa-section">
+    <div class="sa-section-title">
+      Script Jobs
+      <span class="sa-pill">22</span>
+    </div>
+    <div class="sa-table-wrap">
+      <table class="sa-table sa-table-striped" id="scriptTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-sort>Job</th>
+            <th data-sort>Schedule</th>
+            <th data-sort>Type</th>
+            <th data-sort>Status</th>
+            <th>Script</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sa-cell-num">1</td><td class="sa-cell-strong">comms-bridge-to-telegram</td><td>1m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">bridge-to-telegram.sh</td></tr>
+          <tr><td class="sa-cell-num">2</td><td class="sa-cell-strong">comms-event-bridge</td><td>1m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">comms-event-bridge.sh</td></tr>
+          <tr><td class="sa-cell-num">3</td><td class="sa-cell-strong">comms-dispatch</td><td>1m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">comms-dispatch.sh</td></tr>
+          <tr><td class="sa-cell-num">4</td><td class="sa-cell-strong">comms-listener</td><td>1m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">comms-listener.sh</td></tr>
+          <tr><td class="sa-cell-num">5</td><td class="sa-cell-strong">comms-ping</td><td>1m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">comms-ping.sh</td></tr>
+          <tr><td class="sa-cell-num">6</td><td class="sa-cell-strong">imsg-to-qareen</td><td>3m</td><td><span class="sa-badge sa-badge-info">Messaging</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">imsg-to-qareen.py</td></tr>
+          <tr style="border-top:2px solid var(--sa-border)"><td class="sa-cell-num">7</td><td class="sa-cell-strong">brain-scheduler-tick</td><td>1m</td><td><span class="sa-badge sa-badge-neutral">Event</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">brain-scheduler-tick.py</td></tr>
+          <tr><td class="sa-cell-num">8</td><td class="sa-cell-strong">event-engine</td><td>1m</td><td><span class="sa-badge sa-badge-neutral">Event</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">event-engine.sh</td></tr>
+          <tr><td class="sa-cell-num">9</td><td class="sa-cell-strong">wake-trigger</td><td>1m</td><td><span class="sa-badge sa-badge-neutral">Event</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">wake-trigger.py</td></tr>
+          <tr style="border-top:2px solid var(--sa-border)"><td class="sa-cell-num">10</td><td class="sa-cell-strong">agent-status-watchdog</td><td>1m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">agent-status-watchdog.sh</td></tr>
+          <tr><td class="sa-cell-num">11</td><td class="sa-cell-strong">popup-killer</td><td>1m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">popup-killer.sh</td></tr>
+          <tr><td class="sa-cell-num">12</td><td class="sa-cell-strong">nafs-autoheal</td><td>2m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-autoheal.sh</td></tr>
+          <tr><td class="sa-cell-num">13</td><td class="sa-cell-strong">nafs-telemetry</td><td>2m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-telemetry-cron.sh</td></tr>
+          <tr><td class="sa-cell-num">14</td><td class="sa-cell-strong">nafs-swarm-watchman</td><td>3m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-swarm-check.py</td></tr>
+          <tr><td class="sa-cell-num">15</td><td class="sa-cell-strong">dashboard-alive-monitor</td><td>5m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">dashboard-alive-monitor.sh</td></tr>
+          <tr><td class="sa-cell-num">16</td><td class="sa-cell-strong">nafs-cron-timeout-killer</td><td>5m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">cron-timeout-killer.sh</td></tr>
+          <tr><td class="sa-cell-num">17</td><td class="sa-cell-strong">nafs-monitor</td><td>5m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">monitor-watchdog.sh</td></tr>
+          <tr><td class="sa-cell-num">18</td><td class="sa-cell-strong">nafs-soul-validate</td><td>10m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">soul-validate.sh</td></tr>
+          <tr><td class="sa-cell-num">19</td><td class="sa-cell-strong">nafs-trust-catcher</td><td>15m</td><td><span class="sa-badge sa-badge-neutral">Infra</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">trust-catcher.sh</td></tr>
+          <tr style="border-top:2px solid var(--sa-border)"><td class="sa-cell-num">20</td><td class="sa-cell-strong">nafs-gemini-oauth-refresh</td><td>45m</td><td><span class="sa-badge sa-badge-neutral">Auth</span></td><td><span class="sa-badge sa-badge-warning">Warning</span></td><td class="sa-cell-mono sa-cell-truncate">nafs-oauth-renew.py</td></tr>
+          <tr><td class="sa-cell-num">21</td><td class="sa-cell-strong">nafs-oauth-auto-renew</td><td>120m</td><td><span class="sa-badge sa-badge-neutral">Auth</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">(launchd)</td></tr>
+          <tr><td class="sa-cell-num">22</td><td class="sa-cell-strong">nafs-oauth-seal</td><td>61m</td><td><span class="sa-badge sa-badge-neutral">Auth</span></td><td><span class="sa-badge sa-badge-ok">Ok</span></td><td class="sa-cell-mono sa-cell-truncate">(launchd)</td></tr>
+        </tbody>
+      </table>
+      <div class="sa-table-footer">
+        <span>22 script jobs · 0 agent mode</span>
+        <span>6 messaging · 3 event · 10 infra · 3 auth</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  /* ── Sorting ────────────────────────────── */
+  document.querySelectorAll('.sa-table thead th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const table = th.closest('table');
+      const tbody = table.querySelector('tbody');
+      const col = [...th.parentElement.children].indexOf(th);
+      const dir = th.getAttribute('data-sort') === 'asc' ? 'desc' : 'asc';
+      th.setAttribute('data-sort', dir);
+
+      const rows = [...tbody.querySelectorAll('tr')];
+      const dividerRows = rows.filter(r => r.style.borderTop.includes('2px'));
+      const dataRows = rows.filter(r => !r.style.borderTop.includes('2px'));
+
+      // Preserve divider position logic: sort within sections
+      const sections = [];
+      let section = [];
+      rows.forEach(r => {
+        if (r.style.borderTop.includes('2px') && section.length) {
+          sections.push(section);
+          section = [];
+        }
+        section.push(r);
+      });
+      if (section.length) sections.push(section);
+
+      // In-section sort
+      sections.forEach(sec => {
+        sec.sort((a, b) => {
+          const ca = (a.children[col]?.textContent || '').trim();
+          const cb = (b.children[col]?.textContent || '').trim();
+          const cmp = ca.localeCompare(cb, undefined, {numeric: true, sensitivity: 'base'});
+          return dir === 'asc' ? cmp : -cmp;
+        });
+      });
+
+      const sorted = sections.flat();
+      sorted.forEach(r => tbody.appendChild(r));
+    });
+  });
+
+  /* ── Search filter ──────────────────────── */
+  function filterTable(tableId, query) {
+    const table = document.getElementById(tableId);
+    const rows = table.querySelectorAll('tbody tr');
+    const q = query.toLowerCase().trim();
+    rows.forEach(r => {
+      if (!q) { r.style.display = ''; return; }
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

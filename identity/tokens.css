@@ -1,0 +1,69 @@
+/* ═══════════════════════════════════════════
+   SAMAANA — Design Tokens
+   Soft Gray · Lavender Whisper · Clean
+   ═══════════════════════════════════════════ */
+
+:root {
+  /* ── Palette ─────────────────────────── */
+  --sa-primary:       #8E85A3;
+  --sa-primary-dark:  #5B5368;
+  --sa-primary-light: #D8D4E4;
+  --sa-accent:        #B5A9C8;
+  --sa-accent-light:  #E8E4F0;
+  --sa-dark:          #2B2738;
+  --sa-dark-light:    #4A4558;
+
+  --sa-cream:         #F7F6FA;
+  --sa-white:         #FFFFFF;
+  --sa-border:        #E5E3EC;
+  --sa-border-light:  #F0EFF5;
+
+  --sa-text:          #2B2738;
+  --sa-text-muted:    #8E8A99;
+  --sa-text-inverse:  #F7F6FA;
+
+  --sa-success:       #6B9A7A;
+  --sa-success-bg:    #EDF5EF;
+  --sa-warning:       #C4A855;
+  --sa-warning-bg:    #FCF8EC;
+  --sa-error:         #B87A73;
+  --sa-error-bg:      #FCEEEC;
+  --sa-info:          #7B8EA8;
+  --sa-info-bg:       #EDF1F7;
+
+  /* ── Typography ───────────────────────── */
+  --sa-font:          'Inter', system-ui, -apple-system, sans-serif;
+  --sa-font-heading:  'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --sa-font-mono:     'JetBrains Mono', 'SF Mono', monospace;
+
+  --sa-text-xs:       0.75rem;    /* 12px */
+  --sa-text-sm:       0.8125rem;  /* 13px */
+  --sa-text-base:     0.9375rem;  /* 15px */
+  --sa-text-lg:        1.125rem;  /* 18px */
+  --sa-text-xl:        1.5rem;    /* 24px */
+  --sa-text-2xl:       2rem;      /* 32px */
+  --sa-text-3xl:       2.5rem;    /* 40px */
+
+  /* ── Spacing ──────────────────────────── */
+  --sa-space-1:        0.25rem;   /*  4px */
+  --sa-space-2:        0.5rem;    /*  8px */
+  --sa-space-3:        0.75rem;   /* 12px */
+  --sa-space-4:        1rem;      /* 16px */
+  --sa-space-5:        1.5rem;    /* 24px */
+  --sa-space-6:        2rem;      /* 32px */
+  --sa-space-8:        3rem;      /* 48px */
+
+  /* ── Radii ────────────────────────────── */
+  --sa-radius-sm:      6px;
+  --sa-radius-md:      10px;
+  --sa-radius-lg:      16px;
+  --sa-radius-full:    999px;
+
+  /* ── Shadows ──────────────────────────── */
+  --sa-shadow-sm:      0 1px 3px rgba(43, 39, 56, 0.05);
+  --sa-shadow-md:      0 4px 12px rgba(43, 39, 56, 0.07);
+  --sa-shadow-lg:      0 8px 30px rgba(43, 39, 56, 0.09);
+
+  /* ── Transitions ──────────────────────── */
+  --sa-ease:           0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

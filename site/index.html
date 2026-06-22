@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qarin Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../identity/tokens.css">
+<link rel="stylesheet" href="../components/tables.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sa-font);
+    background: var(--sa-cream);
+    color: var(--sa-text);
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar Layout ──────────────────────── */
+  .sa-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+  .sa-sidebar {
+    width: 260px;
+    background: var(--sa-dark);
+    color: var(--sa-text-inverse);
+    padding: var(--sa-space-6) var(--sa-space-5);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sa-space-6);
+    z-index: 10;
+  }
+  .sa-sidebar-logo {
+    font-family: var(--sa-font-heading);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--sa-white);
+  }
+  .sa-sidebar-logo span {
+    color: var(--sa-primary);
+    font-weight: 500;
+    font-size: var(--sa-text-xs);
+    display: block;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+  .sa-sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sa-space-1);
+  }
+  .sa-sidebar-label {
+    font-family: var(--sa-font-heading);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sa-text-muted);
+    margin-bottom: var(--sa-space-1);
+    opacity: 0.6;
+  }
+  .sa-sidebar a {
+    color: rgba(247, 246, 250, 0.6);
+    text-decoration: none;
+    font-size: var(--sa-text-sm);
+    padding: var(--sa-space-1) var(--sa-space-3);
+    border-radius: var(--sa-radius-sm);
+    transition: all var(--sa-ease);
+  }
+  .sa-sidebar a:hover,
+  .sa-sidebar a.active {
+    color: var(--sa-white);
+    background: rgba(247, 246, 250, 0.08);
+  }
+  .sa-sidebar a.active {
+    background: rgba(142, 133, 163, 0.2);
+  }
+
+  /* ── Main ─────────────────────────────────── */
+  .sa-main {
+    margin-left: 260px;
+    flex: 1;
+    padding: var(--sa-space-8);
+    max-width: 960px;
+  }
+
+  .sa-hero {
+    margin-bottom: var(--sa-space-8);
+  }
+  .sa-hero h1 {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-3xl);
+    font-weight: 700;
+    color: var(--sa-dark);
+    margin-bottom: var(--sa-space-3);
+  }
+  .sa-hero p {
+    font-size: var(--sa-text-base);
+    color: var(--sa-text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ── Section ─────────────────────────────── */
+  .sa-section {
+    margin-bottom: var(--sa-space-8);
+  }
+  .sa-section h2 {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-xl);
+    font-weight: 600;
+    color: var(--sa-dark);
+    margin-bottom: var(--sa-space-2);
+  }
+  .sa-section h3 {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-lg);
+    font-weight: 600;
+    color: var(--sa-dark);
+    margin: var(--sa-space-5) 0 var(--sa-space-3);
+  }
+  .sa-section p {
+    font-size: var(--sa-text-base);
+    line-height: 1.7;
+    color: var(--sa-text);
+    margin-bottom: var(--sa-space-4);
+  }
+
+  /* ── Swatch grid ──────────────────────────── */
+  .sa-swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--sa-space-4);
+    margin-bottom: var(--sa-space-6);
+  }
+  .sa-swatch {
+    background: var(--sa-white);
+    border: 1px solid var(--sa-border);
+    border-radius: var(--sa-radius-md);
+    overflow: hidden;
+    box-shadow: var(--sa-shadow-sm);
+  }
+  .sa-swatch-chip {
+    height: 80px;
+  }
+  .sa-swatch-info {
+    padding: var(--sa-space-3);
+  }
+  .sa-swatch-name {
+    font-family: var(--sa-font-heading);
+    font-size: var(--sa-text-xs);
+    font-weight: 600;
+    color: var(--sa-dark);
+    margin-bottom: 2px;
+  }
+  .sa-swatch-hex {
+    font-family: var(--sa-font-mono);
+    font-size: 11px;
+    color: var(--sa-text-muted);
+  }
+
+  /* ── Type specimen ────────────────────────── */
+  .sa-type-spec {
+    margin-bottom: var(--sa-space-5);
+    padding-bottom: var(--sa-space-5);
+    border-bottom: 1px solid var(--sa-border-light);
+  }
+  .sa-type-spec:last-child { border-bottom: none; }
+  .sa-type-label {
+    font-family: var(--sa-font-mono);
+    font-size: var(--sa-text-xs);
+    color: var(--sa-text-muted);
+    margin-bottom: var(--sa-space-2);
+  }
+  .sa-type-display { font-family: var(--sa-font-heading); font-size: var(--sa-text-3xl); font-weight: 700; color: var(--sa-dark); }
+  .sa-type-h1 { font-family: var(--sa-font-heading); font-size: var(--sa-text-2xl); font-weight: 600; color: var(--sa-dark); }
+  .sa-type-h2 { font-family: var(--sa-font-heading); font-size: var(--sa-text-xl); font-weight: 600; color: var(--sa-dark); }
+  .sa-type-body { font-family: var(--sa-font); font-size: var(--sa-text-base); line-height: 1.7; }
+  .sa-type-sm { font-family: var(--sa-font); font-size: var(--sa-text-sm); color: var(--sa-text-muted); }
+  .sa-type-xs { font-family: var(--sa-font); font-size: var(--sa-text-xs); color: var(--sa-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .sa-type-mono { font-family: var(--sa-font-mono); font-size: var(--sa-text-sm); }
+
+  /* ── Code block ───────────────────────────── */
+  .sa-code {
+    background: var(--sa-dark);
+    color: #D8D4E4;
+    padding: var(--sa-space-4);
+    border-radius: var(--sa-radius-md);
+    font-family: var(--sa-font-mono);
+    font-size: var(--sa-text-xs);
+    line-height: 1.8;
+    overflow-x: auto;
+    margin-bottom: var(--sa-space-5);
+  }
+  .sa-code .cm { color: #8E8A99; }
+  .sa-code .cv { color: #B5A9C8; }
+  .sa-code .ct { color: #7B8EA8; }
+
+  /* ── Spacing scale ────────────────────────── */
+  .sa-space-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-4);
+    margin-bottom: var(--sa-space-3);
+  }
+  .sa-space-bar .bar {
+    height: 24px;
+    background: var(--sa-primary-light);
+    border-radius: var(--sa-radius-sm);
+    transition: all var(--sa-ease);
+  }
+  .sa-space-bar .label {
+    font-family: var(--sa-font-mono);
+    font-size: var(--sa-text-xs);
+    color: var(--sa-text-muted);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 768px) {
+    .sa-sidebar { display: none; }
+    .sa-main { margin-left: 0; padding: var(--sa-space-4); }
+  }
+</style>
+</head>
+<body>
+
+<div class="sa-layout">
+
+<aside class="sa-sidebar">
+  <div class="sa-sidebar-logo">
+    QARIN
+    <span>Design System v0.1</span>
+  </div>
+
+  <nav class="sa-sidebar-section">
+    <div class="sa-sidebar-label">Foundation</div>
+    <a href="#colors" class="active">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#shadows">Shadows</a>
+  </nav>
+
+  <nav class="sa-sidebar-section">
+    <div class="sa-sidebar-label">Components</div>
+    <a href="#tables">Tables</a>
+    <a href="#badges">Badges</a>
+  </nav>
+
+  <nav class="sa-sidebar-section">
+    <div class="sa-sidebar-label">Resources</div>
+    <a href="#usage">Usage</a>
+    <a href="https://github.com/msalem89/qarin-design" target="_blank">GitHub →</a>
+  </nav>
+</aside>
+
+<main class="sa-main">
+
+  <!-- ── Hero ────────────────────────────────── -->
+  <div class="sa-hero">
+    <h1>Qarin Design System</h1>
+    <p>The design language for Qarin — an AI companion platform by Samaana Solutions. Clean, restrained, high-trust. Soft gray with a lavender whisper.</p>
+  </div>
+
+  <!-- ── Colors ──────────────────────────────── -->
+  <section class="sa-section" id="colors">
+    <h2>Colors</h2>
+    <p>Cool grays with a lavender undertone. Single source of truth: <code>identity/tokens.css</code>.</p>
+
+    <h3>Primary</h3>
+    <div class="sa-swatch-grid">
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#8E85A3"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Primary</div><div class="sa-swatch-hex">#8E85A3</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#5B5368"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Primary Dark</div><div class="sa-swatch-hex">#5B5368</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#D8D4E4"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Primary Light</div><div class="sa-swatch-hex">#D8D4E4</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#B5A9C8"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Accent</div><div class="sa-swatch-hex">#B5A9C8</div></div></div>
+    </div>
+
+    <h3>Neutrals</h3>
+    <div class="sa-swatch-grid">
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#2B2738"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Dark</div><div class="sa-swatch-hex">#2B2738</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#4A4558"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Dark Light</div><div class="sa-swatch-hex">#4A4558</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#8E8A99"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Text Muted</div><div class="sa-swatch-hex">#8E8A99</div></div></div>
+    </div>
+
+    <h3>Surfaces</h3>
+    <div class="sa-swatch-grid">
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#F7F6FA;border:1px solid #E5E3EC"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Background</div><div class="sa-swatch-hex">#F7F6FA</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#FFFFFF;border:1px solid #E5E3EC"></div><div class="sa-swatch-info"><div class="sa-swatch-name">White</div><div class="sa-swatch-hex">#FFFFFF</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#E5E3EC"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Border</div><div class="sa-swatch-hex">#E5E3EC</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#F0EFF5"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Border Light</div><div class="sa-swatch-hex">#F0EFF5</div></div></div>
+    </div>
+
+    <h3>Semantic</h3>
+    <div class="sa-swatch-grid">
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#6B9A7A"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Success</div><div class="sa-swatch-hex">#6B9A7A</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#C4A855"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Warning</div><div class="sa-swatch-hex">#C4A855</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#B87A73"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Error</div><div class="sa-swatch-hex">#B87A73</div></div></div>
+      <div class="sa-swatch"><div class="sa-swatch-chip" style="background:#7B8EA8"></div><div class="sa-swatch-info"><div class="sa-swatch-name">Info</div><div class="sa-swatch-hex">#7B8EA8</div></div></div>
+    </div>
+  </section>
+
+  <!-- ── Typography ──────────────────────────── -->
+  <section class="sa-section" id="typography">
+    <h2>Typography</h2>
+    <p>Three fonts. Each has a job. No crossover.</p>
+
+    <div class="sa-type-spec">
+      <div class="sa-type-label">Display · Plus Jakarta Sans 700 · 40px</div>
+      <div class="sa-type-display">Build with conviction.</div>
+    </div>
+    <div class="sa-type-spec">
+      <div class="sa-type-label">H1 · Plus Jakarta Sans 600 · 32px</div>
+      <div class="sa-type-h1">Agent Fleet Overview</div>
+    </div>
+    <div class="sa-type-spec">
+      <div class="sa-type-label">H2 · Plus Jakarta Sans 600 · 24px</div>
+      <div class="sa-type-h2">Active Agents</div>
+    </div>
+    <div class="sa-type-spec">
+      <div class="sa-type-label">Body · Inter 400 · 15px / 1.7</div>
+      <p class="sa-type-body">Qarin is an always-running system of agents that knows you, anticipates, and executes. It runs your infrastructure, remembers what matters, and works alongside you via any surface.</p>
+    </div>
+    <div class="sa-type-spec">
+      <div class="sa-type-label">Small · Inter 400 · 13px</div>
+      <div class="sa-type-sm">All routed through FCC proxy · 127.0.0.1:8082</div>
+    </div>
+    <div class="sa-type-spec">
+      <div class="sa-type-label">Mono · JetBrains Mono 400 · 13px</div>
+      <div class="sa-type-mono">nafs-agent-runner.sh brain --model claude-opus-4</div>
+    </div>
+
+    <div class="sa-code">
+<span class="cm">/* Font stacks */</span>
+<span class="cv">--sa-font:</span>          <span class="ct">'Inter'</span>, system-ui, -apple-system, sans-serif;
+<span class="cv">--sa-font-heading:</span>  <span class="ct">'Plus Jakarta Sans'</span>, <span class="ct">'Inter'</span>, system-ui, sans-serif;
+<span class="cv">--sa-font-mono:</span>     <span class="ct">'JetBrains Mono'</span>, <span class="ct">'SF Mono'</span>, monospace;
+    </div>
+  </section>
+
+  <!-- ── Spacing ─────────────────────────────── -->
+  <section class="sa-section" id="spacing">
+    <h2>Spacing</h2>
+    <p>4px base grid. Minor third progression. Never go below 4px.</p>
+    <div class="sa-space-bar"><div class="bar" style="width:4px"></div><div class="label">1 · 4px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:8px"></div><div class="label">2 · 8px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:12px"></div><div class="label">3 · 12px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:16px"></div><div class="label">4 · 16px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:24px"></div><div class="label">5 · 24px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:32px"></div><div class="label">6 · 32px</div></div>
+    <div class="sa-space-bar"><div class="bar" style="width:48px"></div><div class="label">8 · 48px</div></div>
+  </section>
+
+  <!-- ── Shadows ─────────────────────────────── -->
+  <section class="sa-section" id="shadows">
+    <h2>Shadows</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sa-space-4);">
+      <div style="background:var(--sa-white);padding:var(--sa-space-5);border-radius:var(--sa-radius-md);box-shadow:var(--sa-shadow-sm);text-align:center;">
+        <div style="font-family:var(--sa-font-heading);font-weight:600;font-size:var(--sa-text-sm);margin-bottom:var(--sa-space-1);">sm</div>
+        <div style="font-family:var(--sa-font-mono);font-size:var(--sa-text-xs);color:var(--sa-text-muted);">0 1px 3px</div>
+      </div>
+      <div style="background:var(--sa-white);padding:var(--sa-space-5);border-radius:var(--sa-radius-md);box-shadow:var(--sa-shadow-md);text-align:center;">
+        <div style="font-family:var(--sa-font-heading);font-weight:600;font-size:var(--sa-text-sm);margin-bottom:var(--sa-space-1);">md</div>
+        <div style="font-family:var(--sa-font-mono);font-size:var(--sa-text-xs);color:var(--sa-text-muted);">0 4px 12px</div>
+      </div>
+      <div style="background:var(--sa-white);padding:var(--sa-space-5);border-radius:var(--sa-radius-md);box-shadow:var(--sa-shadow-lg);text-align:center;">
+        <div style="font-family:var(--sa-font-heading);font-weight:600;font-size:var(--sa-text-sm);margin-bottom:var(--sa-space-1);">lg</div>
+        <div style="font-family:var(--sa-font-mono);font-size:var(--sa-text-xs);color:var(--sa-text-muted);">0 8px 30px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tables ──────────────────────────────── -->
+  <section class="sa-section" id="tables">
+    <h2>Tables</h2>
+    <p>Browsable, clean, branded. Sortable columns. Search with live filter. Status badges with dot indicators.</p>
+
+    <div class="sa-table-wrap">
+      <table class="sa-table sa-table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-sort>Agent</th>
+            <th data-sort>Model</th>
+            <th data-sort>Schedule</th>
+            <th data-sort>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sa-cell-num">1</td><td class="sa-cell-strong">nafs-brain</td><td class="sa-cell-mono">claude-opus-4</td><td>10m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td></tr>
+          <tr><td class="sa-cell-num">2</td><td class="sa-cell-strong">nafs-codex</td><td class="sa-cell-mono">claude-opus-4</td><td>10m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td></tr>
+          <tr><td class="sa-cell-num">3</td><td class="sa-cell-strong">nafs-qa</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>1m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td></tr>
+          <tr><td class="sa-cell-num">4</td><td class="sa-cell-strong">nafs-biz</td><td class="sa-cell-mono">claude-sonnet-4-6</td><td>60m</td><td><span class="sa-badge sa-badge-ok">Healthy</span></td></tr>
+          <tr><td class="sa-cell-num">5</td><td class="sa-cell-strong">equity-analyst</td><td class="sa-cell-mono">claude-haiku-4-5</td><td>15m</td><td><span class="sa-badge sa-badge-warning">Slow</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sa-code" style="margin-top:var(--sa-space-4)">
+<span class="cm">&lt;!-- Table with search + toolbar --&gt;</span>
+&lt;<span class="ct">div</span> class=<span class="cv">"sa-table-wrap"</span>&gt;
+  &lt;<span class="ct">div</span> class=<span class="cv">"sa-table-toolbar"</span>&gt;
+    &lt;<span class="ct">div</span> class=<span class="cv">"sa-table-title"</span>&gt;Agent Fleet&lt;/<span class="ct">div</span>&gt;
+    &lt;<span class="ct">input</span> class=<span class="cv">"sa-table-search"</span> placeholder=<span class="cv">"Search…"</span>&gt;
+  &lt;/<span class="ct">div</span>&gt;
+  &lt;<span class="ct">table</span> class=<span class="cv">"sa-table sa-table-striped"</span>&gt;
+    <span class="cm">&lt;!-- header + body --&gt;</span>
+  &lt;/<span class="ct">table</span>&gt;
+&lt;/<span class="ct">div</span>&gt;
+    </div>
+  </section>
+
+  <!-- ── Badges ──────────────────────────────── -->
+  <section class="sa-section" id="badges">
+    <h2>Badges</h2>
+    <p>Status indicators with color-coded dots. Five variants.</p>
+
+    <div style="display:flex;gap:var(--sa-space-3);flex-wrap:wrap;margin-bottom:var(--sa-space-5);">
+      <span class="sa-badge sa-badge-ok">Healthy</span>
+      <span class="sa-badge sa-badge-error">Failed</span>
+      <span class="sa-badge sa-badge-warning">Attention</span>
+      <span class="sa-badge sa-badge-info">Messaging</span>
+      <span class="sa-badge sa-badge-neutral">Infra</span>
+    </div>
+
+    <div class="sa-code">
+<span class="cm">&lt;!-- Five badge variants --&gt;</span>
+&lt;<span class="ct">span</span> class=<span class="cv">"sa-badge sa-badge-ok"</span>&gt;Healthy&lt;/<span class="ct">span</span>&gt;
+&lt;<span class="ct">span</span> class=<span class="cv">"sa-badge sa-badge-error"</span>&gt;Failed&lt;/<span class="ct">span</span>&gt;
+&lt;<span class="ct">span</span> class=<span class="cv">"sa-badge sa-badge-warning"</span>&gt;Attention&lt;/<span class="ct">span</span>&gt;
+&lt;<span class="ct">span</span> class=<span class="cv">"sa-badge sa-badge-info"</span>&gt;Messaging&lt;/<span class="ct">span</span>&gt;
+&lt;<span class="ct">span</span> class=<span class="cv">"sa-badge sa-badge-neutral"</span>&gt;Infra&lt;/<span class="ct">span</span>&gt;
+    </div>
+  </section>
+
+  <!-- ── Usage ───────────────────────────────── -->
+  <section class="sa-section" id="usage">
+    <h2>Usage</h2>
+    <p>Two files. Import and go.</p>
+    <div class="sa-code">
+<span class="cm">&lt;!-- In your &lt;head&gt; --&gt;</span>
+&lt;<span class="ct">link</span> rel=<span class="cv">"stylesheet"</span> href=<span class="cv">"identity/tokens.css"</span>&gt;
+&lt;<span class="ct">link</span> rel=<span class="cv">"stylesheet"</span> href=<span class="cv">"components/tables.css"</span>&gt;
+    </div>
+    <p>Never hardcode values. Always consume tokens via <code>var(--sa-*)</code>. Add new components in <code>components/</code> — one file per component. See <code>README.md</code> for the full rules.</p>
+  </section>
+
+</main>
+</div>
+
+<!-- Hash nav -->
+<script>
+(function(){
+  const links = document.querySelectorAll('.sa-sidebar a[href^="#"]');
+  const sections = [...document.querySelectorAll('section[id]')];
+  const opts = { rootMargin: '-80px 0px -20% 0px', threshold: 0 };
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, opts);
+  sections.forEach(s => obs.observe(s));
+  links.forEach(a => a.addEventListener('click', () => links.forEach(l => l.classList.remove('active'))));
+})();
+</script>
+</body>
+</html>
