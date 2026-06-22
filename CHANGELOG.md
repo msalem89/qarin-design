@@ -27,8 +27,15 @@
 
 **Archived:** v0.0 dome logo → `archive/v0.0-dome-logo/`
 
+**Published:**
+- GitHub repo: `msalem89/qarin-design` (public)
+- GitHub Pages: `https://msalem89.github.io/qarin-design/` (source: `/docs`)
+- Storybook: 10.4.6 with @storybook/html + Vite — 10 component stories (tables, badges, colors)
+- Design system doc site: `docs/index.html` — colors, typography, spacing, shadows, components, usage
+
 **Pending:**
 - Arabic calligraphy logo mark (قرين)
 - Keep catalogs in sync with live memory system
 - More components (cards, forms, navigation)
 - Brain notified via comms to register in path registry and steward
+- Deploy Storybook static to GitHub Pages (or separate host)
