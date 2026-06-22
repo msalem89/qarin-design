@@ -1,0 +1,30 @@
+{
+  "name": "qarin",
+  "version": "1.0.0",
+  "description": "The design language for Qarin — an AI companion platform by Samaana Solutions. Clean, restrained, high-trust.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msalem89/qarin-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msalem89/qarin-design/issues"
+  },
+  "homepage": "https://github.com/msalem89/qarin-design#readme",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/builder-vite": "^10.4.6",
+    "@storybook/html": "^10.4.6",
+    "storybook": "^10.4.6",
+    "vite": "^8.0.16"
+  }
+}
